@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro NASCAR Tuxtla Gutiérrez</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+        header img {
+            max-width: 200px;
+            margin-bottom: 15px;
+        }
+        h1 {
+            color: #0b246a;
+            margin: 0;
+            font-size: 24px;
+        }
+        h2 {
+            color: #d12a1d;
+            font-size: 20px;
+            margin-top: 0;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #0b246a;
+            box-shadow: 0 0 5px rgba(11,36,106,0.3);
+        }
+        .error-message {
+            color: #d12a1d;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        .required::after {
+            content: " *";
+            color: #d12a1d;
+        }
+        button {
+            background-color: #d12a1d;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #af231a;
+        }
+        .success-message {
+            background-color: #dff2bf;
+            color: #4f8a10;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .info-box {
+            background-color: #e6f3ff;
+            border: 1px solid #b8daff;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .info-box h3 {
+            margin-top: 0;
+            color: #0b246a;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="/api/placeholder/200/80" alt="NASCAR Logo">
+            <h1>REGISTRO DE PARTICIPANTES</h1>
+            <h2>NASCAR Tuxtla Gutiérrez 2025</h2>
+        </header>
+        
+        <div class="info-box">
+            <h3>Información del Evento</h3>
+            <p><strong>Fecha:</strong> 20 de abril de 2025</p>
+            <p><strong>Hora:</strong> 14:00</p>
+            <p><strong>Lugar:</strong> Autódromo Chiapas, Tuxtla Gutiérrez</p>
+        </div>
+        
+        <div id="successMessage" class="success-message">
+            ¡Registro completado exitosamente! Recibirás una confirmación por WhatsApp con los detalles de tu registro.
+        </div>
+        
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="folio" class="required">Folio</label>
+                <input type="text" id="folio" name="folio" placeholder="Ejemplo: NASCAR2025-1234" required>
+                <div id="folioError" class="error-message">Por favor ingresa un folio válido en formato NASCAR2025-XXXX</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="nombre" class="required">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre y apellidos" required>
+                <div id="nombreError" class="error-message">Por favor ingresa tu nombre completo</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="required">Correo electrónico</label>
+                <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                <div id="emailError" class="error-message">Por favor ingresa un correo electrónico válido</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="telefono" class="required">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="Ingresa tu número de WhatsApp" required>
+                <div id="telefonoError" class="error-message">Por favor ingresa un número de teléfono válido</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="edad">Edad</label>
+                <input type="number" id="edad" name="edad" min="18" max="120" placeholder="Edad">
+            </div>
+            
+            <div class="form-group">
+                <label for="ciudad">Ciudad de procedencia</label>
+                <input type="text" id="ciudad" name="ciudad" placeholder="¿De dónde vienes?">
+            </div>
+            
+            <div class="form-group">
+                <label for="tipoParticipante" class="required">Tipo de participante</label>
+                <select id="tipoParticipante" name="tipoParticipante" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="Aficionado">Aficionado</option>
+                    <option value="Piloto">Piloto</option>
+                    <option value="Equipo técnico">Equipo técnico</option>
+                    <option value="Prensa">Prensa</option>
+                    <option value="Patrocinador">Patrocinador</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <div id="tipoError" class="error-message">Por favor selecciona un tipo de participante</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="intereses">¿Qué te interesa más de este evento?</label>
+                <textarea id="intereses" name="intereses" rows="3" placeholder="Cuéntanos qué te atrae de la NASCAR"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="terminos" name="terminos" required>
+                    Acepto los términos y condiciones del evento
+                </label>
+                <div id="terminosError" class="error-message">Debes aceptar los términos y condiciones</div>
+            </div>
+            
+            <button type="submit">Completar registro</button>
+        </form>
+        
+        <footer>
+            <p>© 2025 NASCAR México. Todos los derechos reservados.</p>
+            <p>Para soporte: soporte@nascarmx.com</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Validación del folio (formato NASCAR2025-XXXX)
+            function validarFolio(folio) {
+                const regex = /^NASCAR2025-\d{4}$/;
+                return regex.test(folio);
+            }
+            
+            // Validación de email
+            function validarEmail(email) {
+                const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return regex.test(email);
+            }
+            
+            // Validación de teléfono (10 dígitos)
+            function validarTelefono(telefono) {
+                const regex = /^\d{10}$/;
+                return regex.test(telefono);
+            }
+            
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Obtener valores del formulario
+                const folio = document.getElementById('folio').value;
+                const nombre = document.getElementById('nombre').value;
+                const email = document.getElementById('email').value;
+                const telefono = document.getElementById('telefono').value;
+                const tipoParticipante = document.getElementById('tipoParticipante').value;
+                const terminos = document.getElementById('terminos').checked;
+                
+                // Resetear mensajes de error
+                document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+                
+                // Validar campos
+                let isValid = true;
+                
+                if (!validarFolio(folio)) {
+                    document.getElementById('folioError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (nombre.trim() === '') {
+                    document.getElementById('nombreError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (!validarEmail(email)) {
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (!validarTelefono(telefono)) {
+                    document.getElementById('telefonoError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (tipoParticipante === '') {
+                    document.getElementById('tipoError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (!terminos) {
+                    document.getElementById('terminosError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Si todo es válido, enviar datos (simulado)
+                if (isValid) {
+                    // En un escenario real, aquí enviarías los datos al servidor
+                    // Usando fetch() o XMLHttpRequest
+                    
+                    // Simulación de envío y respuesta exitosa
+                    setTimeout(function() {
+                        form.reset();
+                        form.style.display = 'none';
+                        successMessage.style.display = 'block';
+                        
+                        // Este sería el código para enviar los datos al webhook en una implementación real
+                        /*
+                        fetch('https://tu-servidor.com/webhook/form-submission', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                folio: folio,
+                                nombre: nombre,
+                                email: email,
+                                telefono: telefono,
+                                edad: document.getElementById('edad').value,
+                                ciudad: document.getElementById('ciudad').value,
+                                tipoParticipante: tipoParticipante,
+                                intereses: document.getElementById('intereses').value
+                            }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                form.reset();
+                                form.style.display = 'none';
+                                successMessage.style.display = 'block';
+                            } else {
+                                alert('Error: ' + data.error);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Ha ocurrido un error. Por favor intenta nuevamente.');
+                        });
+                        */
+                    }, 1500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
